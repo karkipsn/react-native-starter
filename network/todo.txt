@@ -1,0 +1,38 @@
+- Inteded
+
+Custom hook to perform every api calls  with axios API
+
+- WIll have Request type and Response type as Generic Type and will have params as an input.
+
+
+-  Uses case:
+
+Ui will have customm hook such as useState hook or just like setState callback muust have 
+api calling callback which sets up the state/response with return type of data, onSuccess or 
+onError Object.
+
+
+steps 1:
+
+- Config for Axios (Might be the custom configuration accordingly to the pages
+(register and login may not have token)).(As a config or instance set up page.)
+
+
+- one generic function/ hook to call every api.
+
+- Service will call that function with Input Type, output type and 
+config(consits of baseUrl, params, headers).
+
+
+UI will have reducer hook likewise state hook which updates UI as well as does the 
+computational work and returns the formatted promise(mapped response) with the response/ or of error type.
+
+
+So,
+let {state, apicallFunction} = useNetworkReducer(config)
+
+apicallFunction(service with generic parmas of Input and Output.)
+
+
+
+

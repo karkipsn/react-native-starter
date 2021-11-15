@@ -1,0 +1,97 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "justifyContent": "center",
+    }
+  }
+>
+  <View
+    accessible={true}
+    focusable={false}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "red",
+        "borderRadius": 20,
+        "elevation": 3,
+        "justifyContent": "center",
+        "opacity": 1,
+        "paddingHorizontal": 32,
+        "paddingVertical": 12,
+        "width": "90%",
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "#fff",
+          "fontSize": 40,
+          "fontWeight": "400",
+        }
+      }
+    >
+      Text
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`Button renders correctly 2`] = `
+<View
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "red",
+        "borderRadius": 4,
+        "elevation": 3,
+        "justifyContent": "center",
+        "paddingHorizontal": 32,
+        "paddingVertical": 12,
+      },
+      Object {
+        "borderRadius": 22,
+      },
+    ]
+  }
+>
+  <Text
+    style={
+      Object {
+        "color": "white",
+        "fontSize": 16,
+        "fontWeight": "bold",
+        "letterSpacing": 0.25,
+        "lineHeight": 21,
+      }
+    }
+  >
+    Text Button
+  </Text>
+</View>
+`;

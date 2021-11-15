@@ -36,6 +36,7 @@ const reducer = (
     state: ArticleState = initialState,
     action: ArticleAction
   ): ArticleState => {
+    
     switch (action.type) {
       case ADD_ARTICLE:
         const newArticle: ArticleInterface = {

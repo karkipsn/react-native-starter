@@ -1,14 +1,5 @@
 import * as articleAction from "./action"
-import { ArticleInterface, ArticleAction, ArticleState, DispatchType }  from "../actionTypes"
-
-// Dispatcher function
-export const simulateHttpRequest = (action: ArticleAction) => {
-    return (dispatch: DispatchType) => {
-      setTimeout(() => {
-        dispatch(action)
-      }, 500)
-    }
-}
+import { ArticleInterface, ArticleAction, ArticleState, ArticleDispatchType }  from "../actionTypes"
   
   // Action creator for Creating
 export const addArticle = (article: ArticleInterface) => {
@@ -26,4 +17,13 @@ export const removeArticle = (article: ArticleInterface) => {
         article,
     }
     return simulateHttpRequest(action)
+}
+
+// Dispatcher function
+export const simulateHttpRequest = (action: ArticleAction) => {
+  return (dispatch: ArticleDispatchType) => {
+    setTimeout(() => {
+      dispatch(action)
+    }, 500)
+  }
 }

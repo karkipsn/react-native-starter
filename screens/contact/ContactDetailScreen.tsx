@@ -1,6 +1,6 @@
 import React from "react";
 import { Text } from "react-native";
-import { ContactScreenProps, ContactScreenRouteProp } from '../types';
+import { ContactScreenProps, ContactScreenRouteProp } from '../../types';
 
 export default (
   props: ContactScreenProps<'ContactDetailScreen'>

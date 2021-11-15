@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Button } from "react-native";
-import { ActionScreenProps } from "../types";
+import { ActionScreenProps } from "../../types";
 
 export default ({ navigation }: ActionScreenProps<'ActiontList'>) => (
   <View style={{ flex: 1 }}>

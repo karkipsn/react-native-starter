@@ -1,9 +1,8 @@
 import React from "react";
 import { FlatList } from "react-native";
-
-import { Row, Separator } from "../components/Row";
-import users from "../data/user";
-import { ContactScreenProps } from '../types';
+import { ContactListRow, Separator } from "../../components/Row";
+import users from "../../data/user";
+import { ContactScreenProps } from '../../types';
 
 export default ({ navigation }: ContactScreenProps<'ContactList'>) => (
   <FlatList
@@ -15,14 +14,12 @@ export default ({ navigation }: ContactScreenProps<'ContactList'>) => (
       const name = `${item.name.first} ${item.name.last}`;
 
       return (
-        <Row
+        <ContactListRow
           image={{ uri: item.picture.thumbnail }}
           title={name}
           subtitle={item.email}
           onPress={() => navigation.push("ContactDetailScreen", { contact: item })}
-          
 // navigation.navigate("ContactDetailScreen")
-          
 
         />
       );

@@ -1,5 +1,5 @@
 import { Button } from "react-native";
-import { AuthScreenProps } from "../types";
+import { AuthScreenProps } from "../../types";
 
 export default ({ navigation }: AuthScreenProps<'SignIn'>) => (
   <>

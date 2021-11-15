@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Text renders correctly 1`] = `
+<Text
+  style={
+    Array [
+      Object {
+        "color": "#000",
+      },
+      Array [
+        undefined,
+        Object {
+          "borderRadius": 40,
+          "fontFamily": "space-mono",
+        },
+      ],
+    ]
+  }
+>
+  Snapshot test!
+</Text>
+`;
+
+exports[`Text renders correctly 2`] = `
+<Text
+  style={
+    Array [
+      Object {
+        "color": "#000",
+      },
+      Array [
+        undefined,
+        Object {
+          "backgroundColor": "red",
+          "borderRadius": 40,
+          "color": "white",
+          "fontWeight": "bold",
+          "padding": 4,
+        },
+      ],
+    ]
+  }
+>
+   Bold Text
+</Text>
+`;
+
+exports[`Text renders correctly 3`] = `
+<Text
+  style={
+    Array [
+      Object {
+        "color": "#000",
+      },
+      Array [
+        undefined,
+        Object {
+          "backgroundColor": "blue",
+          "borderRadius": 12,
+          "shadowColor": "gray",
+          "shadowRadius": 2,
+        },
+      ],
+    ]
+  }
+>
+  Round Text
+</Text>
+`;

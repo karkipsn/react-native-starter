@@ -1,23 +1,13 @@
-/**
- * Learn more about using TypeScript with React Navigation:
- * https://reactnavigation.org/docs/typescript/
- */
-
-import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
-import { CompositeScreenProps, NavigatorScreenParams } from '@react-navigation/native';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RouteProp } from '@react-navigation/native';
+import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { CompositeScreenProps, NavigatorScreenParams } from '@react-navigation/native';
 
-declare global {
-  namespace ReactNavigation {
-    interface RootParamList extends RootStackParamList {}
-  }
-}
 
 export type RootStackParamList = {
   Root: NavigatorScreenParams<RootTabParamList> | undefined;
   Auth: NavigatorScreenParams<AuthParamList> | undefined;
-  Contact: NavigatorScreenParams<ContactParamList> | undefined;
+  // Contact: NavigatorScreenParams<ContactParamList> | undefined;
   Modal: undefined;
   NotFound: undefined;
 };
@@ -34,10 +24,21 @@ export type RootTabParamList = {
   TabSettings: undefined;
 };
 
+// Navigation List and routes(taken key of the paramslist as route.)
+export type RootTabScreenProps<Screen extends keyof RootTabParamList> = CompositeScreenProps<
+  BottomTabScreenProps<RootTabParamList, Screen>,
+  NativeStackScreenProps<RootStackParamList>
+>;
+
 export type ContactParamList = {
   ContactList: undefined,
   ContactDetailScreen: any;
 }
+
+export type ContactScreenProps<Screen extends keyof ContactParamList> = NativeStackScreenProps<
+  ContactParamList, 
+  Screen
+>;
 
 export type ActionParamList = {
   ActiontList: undefined,
@@ -45,35 +46,25 @@ export type ActionParamList = {
   ActionDetails: {} | undefined;
 }
 
+export type ActionScreenProps<Screen extends keyof ActionParamList> = NativeStackScreenProps<
+  ActionParamList, 
+  Screen
+>;
+
 export type AuthParamList = {
   SignIn: undefined,
   SignUp: undefined,
   ForgotPassword: undefined
 }
 
-export type SettingsParamList = {
-  Settings: undefined
-}
-
-export type RootTabScreenProps<Screen extends keyof RootTabParamList> = CompositeScreenProps<
-  BottomTabScreenProps<RootTabParamList, Screen>,
-  NativeStackScreenProps<RootStackParamList>
->;
-
 export type AuthScreenProps<Screen extends keyof AuthParamList> = NativeStackScreenProps<
   AuthParamList, 
   Screen
 >;
 
-export type ContactScreenProps<Screen extends keyof ContactParamList> = NativeStackScreenProps<
-  ContactParamList, 
-  Screen
->;
-
-export type ActionScreenProps<Screen extends keyof ActionParamList> = NativeStackScreenProps<
-  ActionParamList, 
-  Screen
->;
+export type SettingsParamList = {
+  Settings: undefined
+}
 
 export type SettingScreenProps<Screen extends keyof SettingsParamList> = NativeStackScreenProps<
   SettingsParamList, 
