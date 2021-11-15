@@ -1,12 +1,5 @@
 import { Reducer, useEffect, useReducer, useState } from "react";
-import {
-  ApiService,
-  AxiosApi,
-  NetworkAction,
-  NetworkError,
-  NetworkReducer,
-  NetworkState,
-} from "../types"; 
+import { ApiService, AxiosApi, NetworkAction, NetworkError, NetworkReducer, NetworkState, DispatchAction } from "../types"; 
 
 
 function useNetworkReducer<S = any, R = any>(
@@ -15,18 +8,37 @@ function useNetworkReducer<S = any, R = any>(
     onError?: (error: NetworkError) => void
   ): NetworkReducer<S, R> {
 
+    /**
+     *  export type NetworkReducer<S, R> = [
+      NetworkState<R>,
+      (params?: S | Array<S>) => void,
+      () => void
+  ];
+     */
+
     let reducer = makeResponseReducer<R>();
 
     const [params, setParams] = useState<Array<S | undefined>>();
     const [subscribed, isSubscribed] = useState<boolean>(false);
     const [state, dispatch] = useReducer(reducer, { isLoading: false })
 
+    const subscribe = (params?: S | Array<S>) => {
+      if (!subscribed) {
+        params instanceof Array ? setParams(params) : setParams([params]);
+        console.log("Params:", params);
+          isSubscribed(true);
+      }
+  };
+
     useEffect(() => {
         if (subscribed) {
           let didCancel = false;
     
-          !didCancel && dispatch({ type: "PENDING" });
+          !didCancel && dispatch({ type: DispatchAction.PENDING });
     
+          /**
+           * Here params is taken and api call is dispatched using the instance of axios
+           */
           const axiosApi: Array<AxiosApi> | undefined = params
             ? params.map((param) => api(param))
             : undefined;
@@ -55,7 +67,7 @@ function useNetworkReducer<S = any, R = any>(
                       data? data === "" ? { result: true } :data: { result: true }
                     );
                     dispatch({
-                      type: "FULFILLED",
+                      type: DispatchAction.FULFILLED,
                       payload: { data, dataArray },
                     });
                     onSucess && onSucess(data, dataArray);
@@ -68,7 +80,11 @@ function useNetworkReducer<S = any, R = any>(
                   if (!didCancel) {
                     console.log("Api Error", error);
                     console.log("DIDCANCEL: ", didCancel);
-                    dispatch({ type: "REJECTED", payload: { error: error } });
+
+                    dispatch({ 
+                      type: DispatchAction.REJECTED, 
+                      payload: { error: error } });
+
                     onError && onError(error);
                     isSubscribed(false);
                     setParams(undefined);
@@ -85,15 +101,10 @@ function useNetworkReducer<S = any, R = any>(
         }
       }, [subscribed]);
 
-    const subscribe = (params?: S | Array<S>) => {
-        if (!subscribed) {
-          params instanceof Array ? setParams(params) : setParams([params]);
-            isSubscribed(true);
-        }
-    };
+    
 
     const reset = () => {
-        dispatch({type: "RESET"});
+        dispatch({type: DispatchAction.RESET});
 
     };
 
@@ -109,9 +120,10 @@ function makeResponseReducer<R>(): Reducer<NetworkState<R>, NetworkAction<R>>{
         action: NetworkAction<R>
       ): NetworkState<R> => {
         switch (action.type) {
-          case "PENDING":
+          case DispatchAction.PENDING:
             return { ...state, isLoading: true, error: undefined };
-          case "FULFILLED":
+
+          case DispatchAction.FULFILLED:
             return {
               ...state,
               isLoading: false,
@@ -119,13 +131,15 @@ function makeResponseReducer<R>(): Reducer<NetworkState<R>, NetworkAction<R>>{
               dataArray: action.payload?.dataArray,
               error: undefined,
             };
-          case "REJECTED":
+
+          case DispatchAction.REJECTED:
             return {
               ...state,
               isLoading: false,
               error: action.payload?.error,
             };
-          case "RESET":
+
+          case DispatchAction.RESET:
             return { isLoading: false };
           default:
             return state;

@@ -45,8 +45,14 @@ const configureAppStore = () => {
 
 const { store, persistor } = configureAppStore();
 
+/**
+ * Returning the state of root from the store 
+ */
 export type RootState = ReturnType<typeof store.getState>;
 
+/**
+ * Taking the dispatch for the store actions from the store 
+ */
 export type AppDispatch = typeof store.dispatch;
 
 export const useAppSelector = <T extends unknown = unknown>(

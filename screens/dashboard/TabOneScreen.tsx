@@ -59,10 +59,10 @@ React.useEffect(() => {
   <View style = {styles.container}>
     <SafeAreaView>
 
-    <CustomButton onPress={handlePress} textTitle="Text " backgroundColor='red' radius={40}>Button</CustomButton>
-    <Button onPress={handlePress} title="Text Button" radius={22}> </Button>
+    {/* <CustomButton onPress={handlePress} textTitle="Text " backgroundColor='red' radius={40}>Button</CustomButton>
+    <Button onPress={handlePress} title="Text Button" radius={22}> </Button> */}
 
-    {/* <FlatList
+   <FlatList
     data={testdata}
     keyExtractor={(item) => {
       return `${item.id}-${item.title}`;
@@ -83,7 +83,7 @@ React.useEffect(() => {
     ListHeaderComponent={() => <Separator />}
     ListFooterComponent={() => <Separator />}
     contentContainerStyle={{ paddingVertical: 20 }}
-  />  */}
+  />  
       
   </SafeAreaView>
   </View>

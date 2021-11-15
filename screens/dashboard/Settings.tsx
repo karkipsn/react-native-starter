@@ -4,7 +4,7 @@ import { RootTabScreenProps } from '../../types';
 import { Text, View } from '../../customComponents/Themed';
 import { SimpleRow, Separator } from "../../components/Row";
 import useNetworkReducer from "../../network/reducers/useNetworkReducer";
-import { postUser, getTestUser } from '../../network/services/service';
+import { postUser, getTestUser, voidUser } from '../../network/services/service';
 import { NetworkState } from '../../network/types';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import {PostSP} from '../../network/models/RequestSP';
@@ -20,11 +20,12 @@ const [testdata, setTestData] = React.useState<[PostRP][]>();
 // Calling Network Reducer
 // Takes INput Model and Output Model and returns dispatch, success and error case and data.
 
-const [users, call] = useNetworkReducer<PostSP, [PostRP]>(postUser,
+const [users, call, reset] = useNetworkReducer<PostSP, [PostRP]>(postUser,
   (data, dataArray) =>{
-//   console.log("Data:", data);
-//   console.log("DataArray:",dataArray);
-// console.log("DataArray:",dataArray)
+
+  /**
+   * Update the store with the received data.
+   */
  console.log("testdata",users.dataArray);
 
 },
@@ -49,6 +50,7 @@ const articleState = useAppSelector(state => state);
     title: "tewst",
     body: "dddd"
    });
+  // call();
  }, [users, articleState]);
 
 

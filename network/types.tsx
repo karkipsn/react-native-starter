@@ -5,7 +5,7 @@ import {
     Session,
   } from "axios";
   
-  // Global declaration for Axis and mmerging the params in their props.
+  // Global declaration for Axis and merging the params in their props.
   declare module "axios" {
     export interface AxiosRequestConfig {
       useAuthenticaiton?: boolean;
@@ -66,6 +66,9 @@ import {
       () => void
   ];
 
+  /**
+   *  Interface for Axios Network set up and API call.
+   */
   export interface AxiosNetwork {
     readonly configureNetwork: (
       baseUrl: string,
@@ -77,7 +80,9 @@ import {
     ) => AxiosApi;
   }
 
-// Handle the error from the interceptor middleware in the response.
+/**
+ * Interface for Generic Error handler 
+ */
 
 export interface ErrorHandler {
     readonly httpError: (
@@ -87,3 +92,14 @@ export interface ErrorHandler {
     readonly networkError: (error: any) => Promise<NetworkError>;
     readonly unexpectedError: (error: any) => Promise<NetworkError>;
   }
+
+
+  export enum DispatchAction {
+    PENDING = "PENDINGUP",
+    FULFILLED = "FULFILLED",
+    REJECTED = "REJECTED",
+    RESET = "RESET",
+  }
+
+
+  

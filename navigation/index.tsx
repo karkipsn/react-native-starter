@@ -12,10 +12,14 @@ import NotFoundScreen from '../screens/deeplink/NotFoundScreen';
 import TabOneScreen from '../screens/dashboard/TabOneScreen';
 import TabTwoScreen from '../screens/dashboard/TabTwoScreen';
 import Settings from '../screens/dashboard/Settings';
-import { ContactParamList, RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
+import { AuthParamList, ContactParamList, RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
 import ContactListScreen from '../screens/contact/ContactListScreen';
 import ContactDetailScreen from '../screens/contact/ContactDetailScreen';
+import SignInScreen from '../screens/auth/SignInScreen';
+import SignUpScreen from '../screens/auth/SignUpScreen';
+import ForgotPassword from '../screens/auth/ForgotPassword';
+import SplashScreen from '../screens/auth/SplashScreen';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -32,7 +36,10 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator initialRouteName = 'Splash'>
+
+     <Stack.Screen name="Splash" component={SplashScreen} options={{ headerShown: false }} />
+      <Stack.Screen name="Auth" component={AuthNavigator} options={{ headerShown: false }} />
       <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />      
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
@@ -107,14 +114,43 @@ function BottomTabNavigator() {
       <BottomTab.Screen
         name="TabSettings"
         component={Settings}
-        options={{
+        options={({ navigation }: RootTabScreenProps<'TabSettings'>) =>({
           title: 'Tab Setting',
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-        }}
+          headerRight: () => (
+            <Pressable
+              onPress={() => navigation.replace('Splash')}
+              style={({ pressed }) => ({
+                opacity: pressed ? 0.5 : 1,
+              })}>
+              <FontAwesome
+                name="sign-out"
+                size={25}
+                color={Colors[colorScheme].text}
+                style={{ marginRight: 15 }}
+              />
+            </Pressable>
+          ),
+        })
+      }
       />
     </BottomTab.Navigator>
   );
 }
+
+const AuthStack = createNativeStackNavigator<AuthParamList>();
+
+function AuthNavigator() {
+  return (
+    <AuthStack.Navigator>
+
+      <AuthStack.Screen name="SignIn" component={SignInScreen} options={{ headerShown: false }} />
+      <AuthStack.Screen name="SignUp" component={SignUpScreen} options={{ headerShown: false }} />
+      <AuthStack.Screen name="ForgotPassword" component={ForgotPassword} options={{ headerShown: false }} />
+
+    </AuthStack.Navigator>
+  )
+};
 
 function TabBarIcon(props: {
   name: React.ComponentProps<typeof FontAwesome>['name'];

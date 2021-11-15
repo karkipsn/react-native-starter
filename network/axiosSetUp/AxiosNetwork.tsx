@@ -2,7 +2,11 @@ import Axios, { AxiosRequestConfig } from "axios";
 import DefaultErrorHandler from "./DefaultErrorHandler";
 import { AxiosNetwork as AxiosNetworkType } from "../types";
 
+/**
+ * Implementation of Axios Network Interface
+ */
 const AxiosNetwork: AxiosNetworkType = {
+
   configureNetwork: (baseUrl, errorHandler = DefaultErrorHandler) => {
 
     Axios.defaults.baseURL = baseUrl;

@@ -7,7 +7,7 @@ import { CompositeScreenProps, NavigatorScreenParams } from '@react-navigation/n
 export type RootStackParamList = {
   Root: NavigatorScreenParams<RootTabParamList> | undefined;
   Auth: NavigatorScreenParams<AuthParamList> | undefined;
-  // Contact: NavigatorScreenParams<ContactParamList> | undefined;
+  Splash: undefined ;
   Modal: undefined;
   NotFound: undefined;
 };
@@ -54,7 +54,9 @@ export type ActionScreenProps<Screen extends keyof ActionParamList> = NativeStac
 export type AuthParamList = {
   SignIn: undefined,
   SignUp: undefined,
-  ForgotPassword: undefined
+  ForgotPassword: undefined,
+  Root:  NavigatorScreenParams<RootTabParamList> | undefined;
+
 }
 
 export type AuthScreenProps<Screen extends keyof AuthParamList> = NativeStackScreenProps<

@@ -1,10 +1,15 @@
 import { ErrorHandler, NetworkError } from "../types";
 
+/**
+ * Implementation of Generic Error Handler
+ */
+
 const DefaultErrorHandler: ErrorHandler = {
     
   httpError: async (errorResponse, originalRequest) => {
     console.log("HTTP ERROR: ", errorResponse);
     const { message, title, action } = errorResponse.data;
+
     const networkError: NetworkError = {
       kind: "HTTP",
       message: message ?? title ?? "HTTP ERROR"

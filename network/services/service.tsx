@@ -11,6 +11,15 @@ export const postUser: ApiService<PostSP> = (params) => {
       );
 };
 
+export const voidUser: ApiService<PostSP> = () => {
+
+  console.log("PostParams", "Void");
+    return AxiosNetwork.createNetworkApi("/posts", {
+        method: "get",
+      }
+      );
+};
+
 export const getTestUser: ApiService<string> = (params) => {
 
   console.log("PostParams", params);
