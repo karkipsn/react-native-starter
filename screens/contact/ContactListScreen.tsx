@@ -19,8 +19,6 @@ export default ({ navigation }: ContactScreenProps<'ContactList'>) => (
           title={name}
           subtitle={item.email}
           onPress={() => navigation.push("ContactDetailScreen", { contact: item })}
-// navigation.navigate("ContactDetailScreen")
-
         />
       );
     }}

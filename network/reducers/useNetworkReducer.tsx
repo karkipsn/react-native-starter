@@ -26,7 +26,7 @@ function useNetworkReducer<S = any, R = any>(
       if (!subscribed) {
         params instanceof Array ? setParams(params) : setParams([params]);
         console.log("Params:", params);
-          isSubscribed(true);
+        isSubscribed(true);
       }
   };
 
@@ -63,6 +63,7 @@ function useNetworkReducer<S = any, R = any>(
                         ? { result: true }
                         : response[0].data
                       : { result: true };
+
                     const dataArray = response.map(({ data }) =>
                       data? data === "" ? { result: true } :data: { result: true }
                     );
@@ -100,8 +101,6 @@ function useNetworkReducer<S = any, R = any>(
           };
         }
       }, [subscribed]);
-
-    
 
     const reset = () => {
         dispatch({type: DispatchAction.RESET});

@@ -8,7 +8,8 @@ const DefaultErrorHandler: ErrorHandler = {
     
   httpError: async (errorResponse, originalRequest) => {
     console.log("HTTP ERROR: ", errorResponse);
-    const { message, title, action } = errorResponse.data;
+
+    const { message, title } = errorResponse.data;
 
     const networkError: NetworkError = {
       kind: "HTTP",

@@ -6,6 +6,13 @@ import Colors from '../constants/Colors';
 import { MonoText, BoldText } from '../customComponents/StyledText';
 import { Text, View } from '../customComponents/Themed';
 
+
+const handleHelpPress = () => {
+  WebBrowser.openBrowserAsync(
+    'https://docs.expo.io/get-started/create-a-new-app/#opening-the-app-on-your-phonetablet'
+  );
+}
+
 const EditScreenInfo = ({ path }: { path: string }) => {
   return (
     <View>
@@ -35,18 +42,13 @@ const EditScreenInfo = ({ path }: { path: string }) => {
 
       <View style={styles.helpContainer}>
         <TouchableOpacity onPress={handleHelpPress} style={styles.helpLink}>
+          
           <Text style={styles.helpLinkText} lightColor={Colors.light.tint}>
             Tap here if your app doesn't automatically update after making changes
           </Text>
         </TouchableOpacity>
       </View>
     </View>
-  );
-}
-
-const handleHelpPress = () => {
-  WebBrowser.openBrowserAsync(
-    'https://docs.expo.io/get-started/create-a-new-app/#opening-the-app-on-your-phonetablet'
   );
 }
 
